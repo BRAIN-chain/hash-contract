@@ -1,13 +1,47 @@
-# Sample Hardhat Project
+# Commit-and-Reveal Scheme in Solidity
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+- solc: 0.6.12
 
-Try running some of the following tasks:
+# Test
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
+```bash
+$ npx hardhat node
+```
+
+```bash
+$ npx hardhat test benchmark/CommitReveal.js --network localhost
+
+  CommitReveal
+    Normal
+Tester:  0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 (10000 ETH)
+Deploy CommitReveal:     0x4319D2eE2aa3fEcE174F14879DBebC6eAab4f605
+      ✓ Commit Hash (8620626 gas)
+      ✓ Reveal Hash (13358365 gas)
+    Hashed
+Tester:  0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 (9999.964260470151 ETH)
+Deploy CommitReveal:     0x86b9a66E8358Ab0BC924dd068eF549A61D51dA73
+      ✓ Commit Hash (8324859 gas)
+      ✓ Reveal Hash (8004341 gas)
+
+·----------------------------------|---------------------------|-------------|----------------------------·
+|       Solc version: 0.6.12       ·  Optimizer enabled: true  ·  Runs: 200  ·  Block limit: 6718946 gas  │
+···································|···························|·············|·····························
+|  Methods                                                                                                │
+·················|·················|·············|·············|·············|··············|··············
+|  Contract      ·  Method         ·  Min        ·  Max        ·  Avg        ·  # calls     ·  usd (avg)  │
+·················|·················|·············|·············|·············|··············|··············
+|  CommitReveal  ·  commit         ·      44992  ·      52065  ·      45570  ·         169  ·          -  │
+·················|·················|·············|·············|·············|··············|··············
+|  CommitReveal  ·  commit_hashed  ·      44861  ·      44885  ·      44884  ·         169  ·          -  │
+·················|·················|·············|·············|·············|··············|··············
+|  CommitReveal  ·  reveal         ·      47898  ·     365383  ·      79323  ·         169  ·          -  │
+·················|·················|·············|·············|·············|··············|··············
+|  CommitReveal  ·  reveal_hashed  ·      47355  ·      47379  ·      47378  ·         168  ·          -  │
+·················|·················|·············|·············|·············|··············|··············
+|  Deployments                     ·                                         ·  % of limit  ·             │
+···································|·············|·············|·············|··············|··············
+|  CommitReveal                    ·          -  ·          -  ·     691625  ·      10.3 %  ·          -  │
+·----------------------------------|-------------|-------------|-------------|--------------|-------------·
+
+  4 passing (2m)
 ```
