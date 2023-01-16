@@ -70,6 +70,9 @@ describe("CommitReveal", function () {
 
   describe("Hashed", function () {
     it("Commit Hash", async function () {
+      // await set();
+      // await deploy();
+
       for (d of data) {
         input = await contract.commitReveal.stringToBytes(d);
         hashed_input = await contract.commitReveal.hashString(input);
