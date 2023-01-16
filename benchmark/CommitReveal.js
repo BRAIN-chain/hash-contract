@@ -25,12 +25,14 @@ describe("CommitReveal", function () {
     console.log(":\t", contract.commitReveal.address);
   }
 
+  round = 0;
+  temp_round = round;
+
   describe("Normal", function () {
     it("Commit Hash", async function () {
       await set();
       await deploy();
 
-      round = 0
       for (d of data) {
         input = await contract.commitReveal.stringToBytes(d);
 
@@ -45,7 +47,6 @@ describe("CommitReveal", function () {
       }
     });
     it("Reveal Hash", async function () {
-      round = 0
       for (d of data) {
         input = await contract.commitReveal.stringToBytes(d);
 
@@ -53,24 +54,22 @@ describe("CommitReveal", function () {
           input,
           signer.tester.address,
           950327,
-          round
+          temp_round
         );
         await txRes.wait();
 
-        await contract.commitReveal.saved_commits(round, signer.tester.address);
+        await contract.commitReveal.saved_commits(temp_round, signer.tester.address);
         expect(txRes).to.equal(txRes);
 
-        round += 1;
+        temp_round += 1;
       }
     });
   });
 
+  temp_round = round;
+
   describe("Hashed", function () {
     it("Commit Hash", async function () {
-      await set();
-      await deploy();
-
-      round = 0
       for (d of data) {
         input = await contract.commitReveal.stringToBytes(d);
         hashed_input = await contract.commitReveal.hashString(input);
@@ -86,7 +85,6 @@ describe("CommitReveal", function () {
       }
     });
     it("Reveal Hash", async function () {
-      round = 0
       for (d of data) {
         input = await contract.commitReveal.stringToBytes(d);
         hashed_input = await contract.commitReveal.hashString(input);
@@ -95,14 +93,14 @@ describe("CommitReveal", function () {
           hashed_input,
           signer.tester.address,
           950327,
-          round
+          temp_round
         );
         await txRes.wait();
 
-        await contract.commitReveal.saved_commits(round, signer.tester.address);
+        await contract.commitReveal.saved_commits(temp_round, signer.tester.address);
         expect(txRes).to.equal(txRes);
 
-        round += 1;
+        temp_round += 1;
       }
     });
   });
