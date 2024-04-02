@@ -1,3 +1,39 @@
+# TL;DR
+
+```bash
+$ npx hardhat test benchmark/gas.js --network hardhat
+
+    Normal
+
+Min: 22745
+Max: 23144
+Average (std): 22766.676434676434676434 (23.033533318397716373 = sqrt(530.543657129737715817))
+Median: 22760
+      ✓ Commit Hash
+
+Min: 5236
+Max: 757180
+Average (std): 63611.785103785103785103 (47739.897636971280496974 = sqrt(2279097826.388496051499714502))
+Median: 69526
+      ✓ Reveal Hash
+
+    Hashed
+
+Min: 22686
+Max: 22686
+Average (std): 22686.0 (0.0 = sqrt(0.0))
+Median: 22686
+      ✓ Commit Hash
+
+Min: 24805
+Max: 24805
+Average (std): 24805.0 (0.0 = sqrt(0.0))
+Median: 24805
+      ✓ Reveal Hash
+```
+
+---
+
 # Commit-and-Reveal Scheme in Solidity
 
 - solc: 0.6.12

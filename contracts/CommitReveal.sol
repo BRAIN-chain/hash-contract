@@ -15,7 +15,7 @@ contract CommitReveal {
         // address addr, // address
         uint256 seed, // random value
         uint256 r // round
-    ) external returns (bytes32) {
+    ) public virtual returns (bytes32) {
         address _msgSender = msg.sender;
         bytes32 value = keccak256(abi.encodePacked(res, _msgSender, seed));
 
@@ -34,7 +34,7 @@ contract CommitReveal {
         address addr, // address
         uint256 seed, // random value
         uint256 r // round
-    ) external returns (bool) {
+    ) public virtual returns (bool) {
         bytes32 restored_value = keccak256(abi.encodePacked(res, addr, seed));
 
         require(
@@ -52,7 +52,7 @@ contract CommitReveal {
         // address addr, // address
         uint256 seed, // random value
         uint256 r // round
-    ) external returns (bytes32) {
+    ) public virtual returns (bytes32) {
         address _msgSender = msg.sender;
         bytes32 value = keccak256(abi.encodePacked(res, _msgSender, seed));
 
@@ -71,7 +71,7 @@ contract CommitReveal {
         address addr, // address
         uint256 seed, // random value
         uint256 r // round
-    ) external returns (bool) {
+    ) public virtual returns (bool) {
         bytes32 restored_value = keccak256(abi.encodePacked(res, addr, seed));
 
         require(
